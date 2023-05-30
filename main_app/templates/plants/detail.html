@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Plant List</h1>
-
-{% for plant in plants %}
-  <a href="{% url 'detail' plant.id %}">
-    <div class="card">
-      <div class="'card-content">
+<h1>Plant Info</h1>
+  
+<div class="card">
+    <div class="'card-content">
         <span class="card-title">{{ plant.name  }}</span>
         <p>Kingdom: {{ plant.kingdom }}</p>
         <p>Species: {{ plant.species }}</p>
@@ -16,9 +14,7 @@
         {% else %}
             <p>Age: Baby Plant</p>
         {% endif %}
-      </div>  
-    </div>
-  </a>
-{% endfor %}
-
+    </div>  
+</div>
+  
 {% endblock %}
