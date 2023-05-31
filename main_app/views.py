@@ -1,9 +1,6 @@
 from django.shortcuts import render
 from .models import Plant 
-# plants = [
-#     {'name': 'Morgan', 'kingdom': 'Plantae', 'species': 'Monstera xanthospatha', 'performance': 'bright to medium-bright indirect light','age': 1},
-#     {'name': 'Audrey', 'kingdom': 'Plantae', 'species': 'Ficus benghalensis', 'performance': 'bright indirect light','age': 1},
-# ]
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
 def home(request):
@@ -20,3 +17,15 @@ def plants_index(request):
 def plants_detail(request, plant_id):
     plant = Plant.objects.get(id=plant_id)
     return render(request, 'plants/detail.html', { 'plant': plant})
+
+class PlantCreate(CreateView):
+    model = Plant
+    fields = '__all__'
+
+class PlantUpdate(UpdateView):
+    model = Plant
+    fields = ['species', 'light', 'age']
+
+class PlantDelete(DeleteView):
+    model = Plant
+    success_url = '/plants'
